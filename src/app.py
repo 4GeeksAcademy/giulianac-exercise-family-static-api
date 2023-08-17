@@ -61,13 +61,13 @@ def add_member():
 def get_single_member(id):
     single_member = jackson_family.get_member(id)
     if single_member is None:
-        raise APIException(f"The user id {id} doesn't exist", status_code=400)
+        raise APIException(f"The user id {id} doesn't exist", status_code=404)
     return jsonify(single_member), 200
 
 @app.route('/member/<int:id>', methods=['DELETE'])
 def delete_single_member(id):
     if id is None:
-        raise APIException(f"The user id {id} doesn't exist", status_code=400)
+        raise APIException(f"The user id {id} doesn't exist", status_code=404)
     jackson_family.delete_member(id)
     return jsonify({"done": True}), 200
 
